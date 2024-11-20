@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CWallet</string>
+    <string name="saveMnemonicWords">Write down the following 24 words in order. Keep them safe and private.</string>
+    <string name="i_ve_written_it_down">I\'ve Written It Down</string>
 </resources>

@@ -2,10 +2,12 @@ package com.example.cwallet.features.mnemonic.data
 
 import android.content.Context
 import com.example.cwallet.core.data.encryption.CryptographyManager
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class LocalMnemonicStorage(
+class LocalMnemonicStorage @Inject constructor(
     private val cryptographyManager: CryptographyManager,
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) {
 
 

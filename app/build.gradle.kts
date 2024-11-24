@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.bitcoinj.core)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     kapt(libs.hilt.android.compiler)
 

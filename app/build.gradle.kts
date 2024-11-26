@@ -62,9 +62,10 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.bitcoinj.core)
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation (libs.core)
+    implementation (libs.web3j.crypto)
 
     kapt(libs.hilt.android.compiler)
 

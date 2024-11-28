@@ -1,4 +1,4 @@
-package com.example.cwallet.features.secretKey.presentation
+package com.example.cwallet.features.mnemonic.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,9 +32,9 @@ import com.example.cwallet.ui.theme.CWalletTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MnemonicScreen(modifier: Modifier = Modifier, viewModel: SecretKeyViewModel) {
+fun MnemonicScreen(modifier: Modifier = Modifier, viewModel: MnemonicViewModel) {
 
-    val mnemonicWords by viewModel.secretKeys.collectAsStateWithLifecycle()
+    val mnemonicWords by viewModel.mnemonic.collectAsStateWithLifecycle()
 
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "Mnemonic Phrase") })
@@ -56,7 +56,7 @@ fun MnemonicScreen(modifier: Modifier = Modifier, viewModel: SecretKeyViewModel)
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(mnemonicWords.keys.withIndex().toList()) { (index, word) ->
+                items(mnemonicWords.words.withIndex().toList()) { (index, word) ->
                     SecretKeyWordItem(word = word, index = index)
                 }
             }

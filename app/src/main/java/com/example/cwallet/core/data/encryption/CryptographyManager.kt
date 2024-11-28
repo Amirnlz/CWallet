@@ -38,20 +38,20 @@ class CryptographyManager {
 
     private fun getKey(): SecretKey {
 
-        val keyStore = KeyStore.getInstance(ANDROID_KEY_STORE).apply { load(null) }
+        val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
 
-        return if (!keyStore.containsAlias(KEY_ALIAS)) {
+        return if (!keyStore.containsAlias(KEYSTORE_ALIAS)) {
             createKey()
         } else {
-            (keyStore.getEntry(KEY_ALIAS, null) as KeyStore.SecretKeyEntry).secretKey
+            (keyStore.getEntry(KEYSTORE_ALIAS, null) as KeyStore.SecretKeyEntry).secretKey
         }
     }
 
     private fun createKey(): SecretKey {
-        return KeyGenerator.getInstance(ALGORITHM, ANDROID_KEY_STORE).apply {
+        return KeyGenerator.getInstance(ALGORITHM, ANDROID_KEYSTORE).apply {
             init(
                 KeyGenParameterSpec.Builder(
-                    KEY_ALIAS,
+                    KEYSTORE_ALIAS,
                     KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
                 ).setBlockModes(BLOCK_MODE)
                     .setEncryptionPaddings(PADDING)
@@ -68,8 +68,8 @@ class CryptographyManager {
         private const val TRANSFORMATION = "$ALGORITHM/$BLOCK_MODE/$PADDING"
         private const val SIZE = 256
 
-        private const val KEY_ALIAS = "mnemonic_key"
-        private const val ANDROID_KEY_STORE = "AndroidKeyStore"
+        private const val KEYSTORE_ALIAS = "mnemonic_key"
+        private const val ANDROID_KEYSTORE = "AndroidKeyStore"
     }
 
 }

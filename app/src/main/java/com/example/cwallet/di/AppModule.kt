@@ -1,7 +1,7 @@
 package com.example.cwallet.di
 
 import com.example.cwallet.core.data.encryption.CryptographyManager
-import com.example.cwallet.core.data.encryption.MnemonicUtils
+import com.example.cwallet.core.data.encryption.MnemonicManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,10 +14,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMnemonicUtils(): MnemonicUtils = MnemonicUtils
+    fun provideMnemonicManager(): MnemonicManager = MnemonicManager
 
     @Provides
-    fun provideCryptographyManager(): CryptographyManager {
-        return CryptographyManager()
-    }
+    fun provideCryptographyManager(): CryptographyManager = CryptographyManager()
+
 }

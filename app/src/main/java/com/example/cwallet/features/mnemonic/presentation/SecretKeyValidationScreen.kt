@@ -1,4 +1,4 @@
-package com.example.cwallet.features.secretKey.presentation
+package com.example.cwallet.features.mnemonic.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

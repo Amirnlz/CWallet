@@ -1,4 +1,4 @@
-package com.example.cwallet.features.mnemonic.presentation
+package com.example.cwallet.features.walletSetup.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

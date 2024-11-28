@@ -1,8 +1,8 @@
-package com.example.cwallet.features.mnemonic.data
+package com.example.cwallet.features.walletSetup.data
 
 import com.example.cwallet.core.data.encryption.MnemonicManager
-import com.example.cwallet.features.mnemonic.domain.MnemonicRepository
-import com.example.cwallet.features.mnemonic.domain.MnemonicWords
+import com.example.cwallet.features.walletSetup.domain.MnemonicRepository
+import com.example.cwallet.features.walletSetup.domain.MnemonicWords
 import javax.inject.Inject
 
 

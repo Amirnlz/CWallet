@@ -1,7 +1,7 @@
-package com.example.cwallet.features.mnemonic
+package com.example.cwallet.features.walletSetup
 
-import com.example.cwallet.features.mnemonic.data.MnemonicRepositoryImpl
-import com.example.cwallet.features.mnemonic.domain.MnemonicRepository
+import com.example.cwallet.features.walletSetup.data.MnemonicRepositoryImpl
+import com.example.cwallet.features.walletSetup.domain.MnemonicRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class MnemonicBindsModule {
+abstract class WalletSetupBindsModule {
 
     @Singleton
     @Binds

@@ -1,4 +1,4 @@
-package com.example.cwallet.features.mnemonic.data
+package com.example.cwallet.features.walletSetup.data
 
 import android.content.Context
 import com.example.cwallet.core.data.encryption.CryptographyManager

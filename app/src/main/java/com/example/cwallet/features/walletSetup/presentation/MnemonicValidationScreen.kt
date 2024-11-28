@@ -1,4 +1,4 @@
-package com.example.cwallet.features.mnemonic.presentation
+package com.example.cwallet.features.walletSetup.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,7 +31,7 @@ import com.example.cwallet.ui.theme.CWalletTheme
 
 
 @Composable
-fun SecretKeyValidationScreen(modifier: Modifier = Modifier) {
+fun MnemonicValidationScreen(modifier: Modifier = Modifier) {
     val inputLength = 12
 
     Column(
@@ -106,7 +106,7 @@ private fun SecretKeyTextField(
 private fun SecretKeyValidationScreenPreview() {
     CWalletTheme {
         Surface {
-            SecretKeyValidationScreen()
+            MnemonicValidationScreen()
         }
     }
 }

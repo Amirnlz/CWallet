@@ -1,9 +1,9 @@
-package com.example.cwallet.features.mnemonic.presentation
+package com.example.cwallet.features.walletSetup.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cwallet.features.mnemonic.domain.MnemonicRepository
-import com.example.cwallet.features.mnemonic.domain.MnemonicWords
+import com.example.cwallet.features.walletSetup.domain.MnemonicRepository
+import com.example.cwallet.features.walletSetup.domain.MnemonicWords
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

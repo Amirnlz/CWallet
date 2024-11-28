@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.cwallet.features.mnemonic.presentation.MnemonicScreen
-import com.example.cwallet.features.mnemonic.presentation.MnemonicViewModel
+import com.example.cwallet.features.walletSetup.presentation.MnemonicScreen
+import com.example.cwallet.features.walletSetup.presentation.MnemonicViewModel
 import com.example.cwallet.ui.theme.CWalletTheme
 import dagger.hilt.android.AndroidEntryPoint
 

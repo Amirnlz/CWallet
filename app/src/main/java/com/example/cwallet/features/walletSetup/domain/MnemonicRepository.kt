@@ -1,4 +1,4 @@
-package com.example.cwallet.features.mnemonic.domain
+package com.example.cwallet.features.walletSetup.domain
 
 interface MnemonicRepository {
     fun generateMnemonic(): MnemonicWords

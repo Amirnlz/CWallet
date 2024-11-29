@@ -6,11 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.cwallet.features.walletSetup.presentation.MnemonicScreen
-import com.example.cwallet.features.walletSetup.presentation.MnemonicViewModel
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
+import com.example.cwallet.navigation.AppNavHost
 import com.example.cwallet.ui.theme.CWalletTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,13 +20,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CWalletTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val viewModel = hiltViewModel<MnemonicViewModel>()
-                    MnemonicScreen(
-                        modifier = Modifier.padding(innerPadding),
-                        viewModel = viewModel
-                    )
-                }
+                val navController = rememberNavController()
+                AppNavHost(
+                    navHostController = navController,
+                    modifier = Modifier.fillMaxSize().padding(vertical = 16.dp)
+                )
             }
         }
     }

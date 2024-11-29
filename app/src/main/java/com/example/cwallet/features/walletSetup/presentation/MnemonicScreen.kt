@@ -32,7 +32,11 @@ import com.example.cwallet.ui.theme.CWalletTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MnemonicScreen(modifier: Modifier = Modifier, viewModel: MnemonicViewModel) {
+fun MnemonicScreen(
+    modifier: Modifier = Modifier,
+    viewModel: MnemonicViewModel,
+    onNavigateValidateMnemonic: () -> Unit
+) {
 
     val mnemonicWords by viewModel.mnemonic.collectAsStateWithLifecycle()
 
@@ -61,7 +65,7 @@ fun MnemonicScreen(modifier: Modifier = Modifier, viewModel: MnemonicViewModel) 
                 }
             }
             Button(
-                onClick = { },
+                onClick = onNavigateValidateMnemonic,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)

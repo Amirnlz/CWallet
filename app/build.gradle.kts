@@ -64,6 +64,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    implementation(libs.androidx.security.crypto.ktx)
+
 //    Hilt
     kapt(libs.hilt.android.compiler)
     implementation(libs.hilt.android)

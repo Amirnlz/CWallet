@@ -9,11 +9,14 @@ import androidx.navigation.compose.composable
 import com.example.cwallet.features.walletSetup.presentation.MnemonicScreen
 import com.example.cwallet.features.walletSetup.presentation.MnemonicValidationScreen
 import com.example.cwallet.features.walletSetup.presentation.MnemonicViewModel
+import com.example.cwallet.features.walletSetup.presentation.ValidateMnemonicViewModel
 import com.example.cwallet.features.walletSetup.presentation.WalletSetupScreen
 
 
 @Composable
 fun AppNavHost(navHostController: NavHostController, modifier: Modifier = Modifier) {
+    val validateViewModel = hiltViewModel<ValidateMnemonicViewModel>()
+
     NavHost(
         navController = navHostController,
         startDestination = Screen.SetupScreen,
@@ -31,11 +34,19 @@ fun AppNavHost(navHostController: NavHostController, modifier: Modifier = Modifi
             MnemonicScreen(
                 viewModel = viewModel,
                 modifier = modifier,
-                onNavigateValidateMnemonic = { navHostController.navigate(Screen.ValidateMnemonicScreen) }
+                onNavigateValidateMnemonic = {
+                    navHostController.navigate(Screen.ValidateMnemonicScreen)
+                    validateViewModel.setCorrectMnemonic(viewModel.mnemonic.value)
+                }
             )
         }
         composable<Screen.ValidateMnemonicScreen> {
-            MnemonicValidationScreen(modifier)
+            MnemonicValidationScreen(
+                modifier,
+                viewModel = validateViewModel,
+                onValidationComplete = {
+                },
+            )
         }
     }
 }

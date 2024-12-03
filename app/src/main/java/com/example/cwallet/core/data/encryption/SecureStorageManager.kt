@@ -19,5 +19,6 @@ class SecureStorageManager(context: Context) {
 
     fun getMnemonic(key: String): String? {
 //        return sharedPreferences.getString(key, null)
+        return  ""
     }
 }

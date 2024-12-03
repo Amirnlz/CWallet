@@ -16,7 +16,7 @@ class LocalMnemonicStorage @Inject constructor(
     }
 
     fun saveMnemonic(mnemonic: String) {
-        val encryptedMnemonic = cryptographyManager.encryptMnemonic(mnemonic)
+        val encryptedMnemonic = cryptographyManager.encrypt(mnemonic)
         context.openFileOutput(MNEMONIC_FILE_NAME, Context.MODE_PRIVATE).use {
             it.write(encryptedMnemonic.toByteArray())
         }
@@ -27,7 +27,7 @@ class LocalMnemonicStorage @Inject constructor(
         if (!file.exists()) return null
 
         val encryptedMnemonic = file.readBytes().decodeToString()
-        return cryptographyManager.decryptMnemonic(encryptedMnemonic)
+        return cryptographyManager.decrypt(encryptedMnemonic)
     }
 
     fun deleteMnemonic() {

@@ -18,6 +18,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -31,11 +33,18 @@ import com.example.cwallet.ui.theme.CWalletTheme
 
 
 @Composable
-fun MnemonicValidationScreen(modifier: Modifier = Modifier) {
-    val inputLength = 12
+fun MnemonicValidationScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ValidateMnemonicViewModel,
+    onValidationComplete: (Boolean) -> Unit
+) {
+    val validationResult by viewModel.validationResult.collectAsState()
+    val userInputs by viewModel.enteredMnemonic.collectAsState()
+
+
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -53,44 +62,61 @@ fun MnemonicValidationScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        SecretKeyInputs(inputLength)
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            contentPadding = PaddingValues(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(userInputs.size) { index ->
+                SecretKeyTextField(index = index,
+                    userInput = userInputs[index],
+                    onValueChanged = {
+                        viewModel.onEnteringMnemonicWord(index, it)
+                    }
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
             onClick = {
+                viewModel.validateMnemonic()
             },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(stringResource(R.string.verify_recovery_phrase))
         }
 
-    }
-}
+        when (validationResult) {
+            true -> {
+                Text("Validation Successful!")
+                onValidationComplete(true)
+            }
 
-@Composable
-private fun SecretKeyInputs(inputLength: Int) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(inputLength) { index ->
-            SecretKeyTextField(index)
+            false -> {
+                Text("Validation Failed. Try again.")
+                onValidationComplete(false)
+            }
+
+            null -> {
+                // No result yet
+            }
         }
+
     }
 }
 
 @Composable
 private fun SecretKeyTextField(
-    index: Int
+    index: Int,
+    userInput: String?,
+    onValueChanged: (String) -> Unit,
 ) {
-    var inputValue = ""
     OutlinedTextField(
-        value = inputValue,
-        onValueChange = {
-        },
+        value = userInput ?: "",
+        onValueChange = onValueChanged,
         label = { Text("Word ${index + 1}") },
         singleLine = true,
         keyboardOptions = KeyboardOptions(
@@ -106,7 +132,7 @@ private fun SecretKeyTextField(
 private fun SecretKeyValidationScreenPreview() {
     CWalletTheme {
         Surface {
-            MnemonicValidationScreen()
+//            MnemonicValidationScreen()
         }
     }
 }

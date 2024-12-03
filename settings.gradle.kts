@@ -21,5 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "CWallet"
 include(":app")
-include(":core")
 include(":wallet")
+include(":core")

@@ -29,7 +29,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.amirnlz.cwallet.ui.theme.CWalletTheme
 import com.amirnlz.onboarding.R
 import com.amirnlz.onboarding.domain.model.MnemonicPhrase
 import com.amirnlz.onboarding.presentation.components.MnemonicPhraseGrid
@@ -135,27 +134,23 @@ fun ErrorContent(
 @Preview(showBackground = true)
 @Composable
 fun MnemonicPhraseSuccessPreview() {
-    CWalletTheme {
-        MnemonicPhraseSuccess(
-            mnemonicPhrase = MnemonicPhrase(
-                words = listOf(
-                    "apple", "banana", "cherry", "date",
-                    "elderberry", "fig", "grape", "honeydew",
-                    "kiwi", "lemon", "mango", "nectarine"
-                )
-            ),
-            navigateValidationScreen = {}
-        )
-    }
+    MnemonicPhraseSuccess(
+        mnemonicPhrase = MnemonicPhrase(
+            words = listOf(
+                "apple", "banana", "cherry", "date",
+                "elderberry", "fig", "grape", "honeydew",
+                "kiwi", "lemon", "mango", "nectarine"
+            )
+        ),
+        navigateValidationScreen = {}
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun ErrorContentPreview() {
-    CWalletTheme {
-        ErrorContent(
-            message = "Failed to generate mnemonic phrase",
-            onRetry = {}
-        )
-    }
+    ErrorContent(
+        message = "Failed to generate mnemonic phrase",
+        onRetry = {}
+    )
 }

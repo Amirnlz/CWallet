@@ -4,7 +4,7 @@ object Versions {
     const val appcompat = "1.7.0"
     const val material = "1.12.0"
 
-    const val compose = "1.7.5"
+    const val composeBom = "2024.12.01"
     const val activityCompose = "1.9.2"
     const val viewmodelCompose = "2.8.5"
 

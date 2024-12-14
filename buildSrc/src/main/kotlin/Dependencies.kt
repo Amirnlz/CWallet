@@ -8,14 +8,15 @@ object Dependencies {
     const val material = "com.google.android.material:material:${Versions.material}"
 
     // Compose Dependencies
+    const val composeBom = "androidx.compose:compose-bom:${Versions.composeBom}"
     const val composeMaterial3 = "androidx.compose.material3:material3"
     const val composeUi = "androidx.compose.ui:ui"
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     const val viewmodelCompose =
         "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewmodelCompose}"
 
-    const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
-    const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
+    const val composeUiTooling = "androidx.compose.ui:ui-tooling"
+    const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
 
 
     //    Icons
@@ -51,6 +52,9 @@ fun DependencyHandler.core() {
 }
 
 fun DependencyHandler.compose() {
+    val composeBom = platform(Dependencies.composeBom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
     implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.composeUi)
     implementation(Dependencies.composeUiTooling)

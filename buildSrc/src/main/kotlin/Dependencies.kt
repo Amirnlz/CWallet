@@ -1,13 +1,29 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object Dependencies {
+
+    //    Core dependencies
+    const val androidxCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+    const val androidxAppcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+    const val material = "com.google.android.material:material:${Versions.material}"
+
     // Compose Dependencies
-    const val composeMaterial = "androidx.compose.material3:material3:${Versions.composeMaterial3}"
-    const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
-    const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.compose}"
-    const val composeUiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
+    const val composeMaterial3 = "androidx.compose.material3:material3"
+    const val composeUi = "androidx.compose.ui:ui"
+    const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
+    const val viewmodelCompose =
+        "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewmodelCompose}"
+
     const val composeUiTooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.compose}"
+
+
+    //    Icons
+    const val iconsCore = "androidx.compose.material:material-icons-core:${Versions.iconsCore}"
+
+    const
+    val iconsExtended =
+        "androidx.compose.material:material-icons-extended:${Versions.iconsExtended}"
 
 
     // Hilt Dependencies
@@ -28,14 +44,25 @@ object Dependencies {
     const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
 }
 
-fun DependencyHandler.compose() {
-    implementation(Dependencies.composeUi)
-    implementation(Dependencies.composeRuntime)
-    implementation(Dependencies.composeUiGraphics)
-    implementation(Dependencies.composeMaterial)
-    debugImplementation(Dependencies.composeUiToolingPreview)
-    implementation(Dependencies.composeUiTooling)
+fun DependencyHandler.core() {
+    implementation(Dependencies.androidxCoreKtx)
+    implementation(Dependencies.androidxAppcompat)
+    implementation(Dependencies.material)
+}
 
+fun DependencyHandler.compose() {
+    implementation(Dependencies.composeMaterial3)
+    implementation(Dependencies.composeUi)
+    implementation(Dependencies.composeUiTooling)
+    debugImplementation(Dependencies.composeUiToolingPreview)
+
+    implementation(Dependencies.activityCompose)
+    implementation(Dependencies.viewmodelCompose)
+}
+
+fun DependencyHandler.icons() {
+    implementation(Dependencies.iconsCore)
+    implementation(Dependencies.iconsExtended)
 }
 
 fun DependencyHandler.hilt() {

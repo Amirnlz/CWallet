@@ -5,16 +5,20 @@ object Dependencies {
     //    Core dependencies
     const val androidxCoreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val androidxAppcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+    const val lifecycleRuntime =
+        "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
+
     const val material = "com.google.android.material:material:${Versions.material}"
 
     // Compose Dependencies
     const val composeBom = "androidx.compose:compose-bom:${Versions.composeBom}"
+    const val graphicsUi = "androidx.compose.ui:ui-graphics"
     const val composeMaterial3 = "androidx.compose.material3:material3"
     const val composeUi = "androidx.compose.ui:ui"
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     const val viewmodelCompose =
         "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewmodelCompose}"
-
+    const val uiTestmanifest = "androidx.compose.ui:ui-test-manifest:${Versions.uiTestManifest}"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
 
@@ -48,6 +52,7 @@ object Dependencies {
 fun DependencyHandler.core() {
     implementation(Dependencies.androidxCoreKtx)
     implementation(Dependencies.androidxAppcompat)
+    implementation(Dependencies.lifecycleRuntime)
     implementation(Dependencies.material)
 }
 
@@ -57,8 +62,10 @@ fun DependencyHandler.compose() {
     androidTestImplementation(composeBom)
     implementation(Dependencies.composeMaterial3)
     implementation(Dependencies.composeUi)
+    implementation(Dependencies.graphicsUi)
     implementation(Dependencies.composeUiTooling)
     debugImplementation(Dependencies.composeUiToolingPreview)
+    debugImplementation(Dependencies.uiTestmanifest)
 
     implementation(Dependencies.activityCompose)
     implementation(Dependencies.viewmodelCompose)

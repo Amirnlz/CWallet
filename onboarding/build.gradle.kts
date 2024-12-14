@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
+    id(Plugins.composeCompiler)
 }
 
 android {
@@ -28,6 +29,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -37,7 +45,6 @@ dependencies {
     core()
     compose()
     icons()
-    implementation(project(":app"))
     debugImplementation(libs.ui.test.manifest)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ui.test.junit4)

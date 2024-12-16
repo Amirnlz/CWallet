@@ -1,4 +1,9 @@
 package com.amirnlz.onboarding.domain.repository
 
-class MnemonicRepository {
+import com.amirnlz.core.common.Resource
+import com.amirnlz.onboarding.domain.model.MnemonicPhrase
+
+interface MnemonicRepository {
+
+    fun generateMnemonicPhrase(): Resource<MnemonicPhrase>
 }

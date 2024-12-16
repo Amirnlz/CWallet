@@ -2,6 +2,8 @@ plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.composeCompiler)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
 }
 
 android {
@@ -42,13 +44,17 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
     core()
     compose()
     icons()
-    debugImplementation(libs.ui.test.manifest)
+    hilt()
     testImplementation(libs.junit)
     androidTestImplementation(libs.ui.test.junit4)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+kapt {
+    correctErrorTypes = true
 }

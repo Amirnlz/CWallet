@@ -13,8 +13,11 @@ object Versions {
     const val iconsCore = "1.7.5"
     const val iconsExtended = "1.7.5"
 
+    const val crypto ="5.0.0"
+    const val security ="1.0.0"
 
-    const val hilt = "2.51"
+
+    const val hilt = "2.51.1"
     const val okHttp = "4.12.0"
     const val retrofit = "2.11.0"
     const val room = "2.6.1"

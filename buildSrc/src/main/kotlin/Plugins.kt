@@ -9,5 +9,6 @@ object Plugins {
     const val androidLibrary = "com.android.library"
     const val kotlinAndroid = "org.jetbrains.kotlin.android"
     const val composeCompiler = "org.jetbrains.kotlin.plugin.compose"
+    const val kotlinKapt = "kotlin-kapt"
     const val hilt = "dagger.hilt.android.plugin"
 }

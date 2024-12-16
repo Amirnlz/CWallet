@@ -30,10 +30,18 @@ object Dependencies {
     val iconsExtended =
         "androidx.compose.material:material-icons-extended:${Versions.iconsExtended}"
 
+    //    Web3
+    const val web3jCrypto = "org.web3j:crypto:${Versions.crypto}"
+    const val web3jCore = "org.web3j:core:${Versions.crypto}"
+
+    //    Security
+    const val securityCrypto = "androidx.security:security-crypto:${Versions.security}"
+
 
     // Hilt Dependencies
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
 
     // Retrofit Dependencies
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
@@ -74,6 +82,15 @@ fun DependencyHandler.compose() {
 fun DependencyHandler.icons() {
     implementation(Dependencies.iconsCore)
     implementation(Dependencies.iconsExtended)
+}
+
+fun DependencyHandler.web3jCrypto() {
+    implementation(Dependencies.web3jCore)
+    implementation(Dependencies.web3jCrypto)
+}
+
+fun DependencyHandler.security() {
+    implementation(Dependencies.securityCrypto)
 }
 
 fun DependencyHandler.hilt() {

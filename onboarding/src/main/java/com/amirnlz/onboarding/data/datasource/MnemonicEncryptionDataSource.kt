@@ -10,8 +10,6 @@ class MnemonicEncryptionDataSource @Inject constructor(
     private val cryptographyManager: CryptographyManager,
     @ApplicationContext private val context: Context
 ) {
-
-
     companion object {
         private const val MNEMONIC_FILE_NAME = "encrypted_mnemonic"
     }

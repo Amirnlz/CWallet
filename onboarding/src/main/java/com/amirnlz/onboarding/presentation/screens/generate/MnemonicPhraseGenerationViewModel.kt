@@ -21,8 +21,8 @@ sealed interface MnemonicPhraseState {
 }
 
 @HiltViewModel
-class MnemonicPhraseGenerationViewModel @Inject constructor(private val repository: MnemonicRepository) :
-    ViewModel() {
+class MnemonicPhraseGenerationViewModel @Inject constructor
+    (private val repository: MnemonicRepository) : ViewModel() {
 
     private var _mnemonicPhraseState =
         MutableStateFlow<MnemonicPhraseState>(MnemonicPhraseState.Loading)

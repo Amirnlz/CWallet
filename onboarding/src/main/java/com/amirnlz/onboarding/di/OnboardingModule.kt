@@ -9,27 +9,26 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class BindOnboardingModule {
     @Binds
-    @Singleton
+    @ViewModelScoped
     abstract fun bindMnemonicRepository(
         mnemonicRepositoryImpl: MnemonicRepositoryImpl
     ): MnemonicRepository
-
 }
 
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 object OnboardingModule {
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun provideMnemonicEncryptionDataSource(
         cryptographyManager: CryptographyManager,
         @ApplicationContext context: Context

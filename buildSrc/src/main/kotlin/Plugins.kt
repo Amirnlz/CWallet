@@ -1,7 +1,7 @@
 object PluginVersions {
     const val androidGradle = "8.1.1"
     const val kotlin = "2.0.21"
-    const val hilt = "2.48"
+    const val hilt = "2.51.1"
 }
 
 object Plugins {

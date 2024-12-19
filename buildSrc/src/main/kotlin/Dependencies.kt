@@ -17,7 +17,7 @@ object Dependencies {
     const val composeUi = "androidx.compose.ui:ui"
     const val activityCompose = "androidx.activity:activity-compose:${Versions.activityCompose}"
     const val viewmodelCompose =
-        "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewmodelCompose}"
+        "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycleRuntimeKtx}"
     const val uiTestmanifest = "androidx.compose.ui:ui-test-manifest:${Versions.uiTestManifest}"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"
     const val composeUiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
@@ -40,7 +40,12 @@ object Dependencies {
 
     // Hilt Dependencies
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val hiltNavigationCompose =
+        "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigationCompose}"
+    const val hiltLifecycleViewmodel =
+        "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltLifecycleViemodel}"
+    const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltNavigationCompose}"
     const val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
 
     // Retrofit Dependencies
@@ -95,7 +100,10 @@ fun DependencyHandler.security() {
 
 fun DependencyHandler.hilt() {
     implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltCompiler)
+    kapt(Dependencies.hiltAndroidCompiler)
+    implementation(Dependencies.hiltNavigationCompose)
+    implementation(Dependencies.hiltLifecycleViewmodel)
+//    kapt(Dependencies.hiltCompiler)
 }
 
 fun DependencyHandler.retrofit() {
@@ -110,5 +118,3 @@ fun DependencyHandler.room() {
     implementation(Dependencies.roomKtx)
     kapt(Dependencies.roomCompiler)
 }
-
-

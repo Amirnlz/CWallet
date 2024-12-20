@@ -45,15 +45,15 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "21"
     }
     buildFeatures {
         compose = true
     }
-    composeOptions {
-//        TODO: change to versions.composeCompiler
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+//    composeOptions {
+////        TODO: change to versions.composeCompiler
+//        kotlinCompilerExtensionVersion = "1.5.15"
+//    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"

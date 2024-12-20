@@ -7,7 +7,6 @@ apply<MainGradlePlugin>()
 
 android {
     namespace = "com.amirnlz.core"
-
 }
 
 dependencies {

@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.config.JvmTarget
 import plugins.ProjectConfig
 
 plugins {
@@ -6,12 +5,12 @@ plugins {
 //    alias(libs.plugins.jetbrains.kotlin.android)
 //    alias(libs.plugins.compose.compiler)
 
-
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
     kotlin("plugin.serialization") version "2.0.21"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.21"
 
 }
 
@@ -42,11 +41,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true

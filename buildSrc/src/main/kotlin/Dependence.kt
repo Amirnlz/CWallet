@@ -23,6 +23,7 @@ object Dependence {
         const val composeBom = "androidx.compose:compose-bom:2024.12.01"
         const val material3 = "androidx.compose.material3:material3"
         const val composeUi = "androidx.compose.ui:ui"
+        const val androidx_ui_graphics ="androidx.compose.ui:ui-graphics"
 
 
         const val composePreview = "androidx.compose.ui:ui-tooling-preview"

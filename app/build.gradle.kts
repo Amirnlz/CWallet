@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.amirnlz.cwallet"
-    compileSdk = 35
+    compileSdk = Build.compileSdkVersion
 
     defaultConfig {
         applicationId = "com.amirnlz.cwallet"
-        minSdk = 24
-        targetSdk = 35
+        minSdk = Build.minSdkVersion
+        targetSdk = Build.targetSdkVersion
         versionCode = 1
         versionName = "1.0"
 

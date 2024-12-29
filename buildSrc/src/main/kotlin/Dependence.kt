@@ -19,27 +19,6 @@ object Dependence {
     }
 
 
-    object Compose {
-        const val composeBom = "androidx.compose:compose-bom:2024.12.01"
-        const val material3 = "androidx.compose.material3:material3"
-        const val composeUi = "androidx.compose.ui:ui"
-        const val androidx_ui_graphics ="androidx.compose.ui:ui-graphics"
-
-
-        const val composePreview = "androidx.compose.ui:ui-tooling-preview"
-        const val composeUiTooling = "androidx.compose.ui:ui-tooling" //debug
-
-        const val composeActivityCompose = "androidx.activity:activity-compose:1.9.2"
-        const val lifecycleViewmodelCompose =
-            "androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5"
-
-        const val composeIconsCore = "androidx.compose.material:material-icons-core"
-
-        const
-        val composeIconsExtended =
-            "androidx.compose.material:material-icons-extended"
-    }
-
     object Hilt {
         const val hiltAndroid = "com.google.dagger:hilt-android:2.51.1"
         const val hiltCompiler = "com.google.dagger:hilt-compiler:2.51.1" //kapt
@@ -53,6 +32,26 @@ object Dependence {
         const val security = "androidx.security:security-crypto:1.0.0"
         const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.8.7"
         const val lifecycleSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7"
+
+        object Compose {
+            const val composeBom = "androidx.compose:compose-bom:2024.12.01"
+            const val material3 = "androidx.compose.material3:material3"
+            const val ui = "androidx.compose.ui:ui"
+            const val uiGraphics = "androidx.compose.ui:ui-graphics"
+
+
+            const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
+            const val uiTooling = "androidx.compose.ui:ui-tooling" //debug
+
+            const val activityCompose = "androidx.activity:activity-compose:1.9.2"
+            const val lifecycleViewmodelCompose =
+                "androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5"
+
+            const val materialIconsCore = "androidx.compose.material:material-icons-core"
+            const
+            val materialIconsExtended =
+                "androidx.compose.material:material-icons-extended"
+        }
     }
 
 

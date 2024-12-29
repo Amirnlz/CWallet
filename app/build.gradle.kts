@@ -54,20 +54,20 @@ dependencies {
 
     implementation(Dependence.AndroidX.core)
     implementation(Dependence.AndroidX.lifecycle)
-    implementation(Dependence.Compose.composeActivityCompose)
-    implementation(platform(Dependence.Compose.composeBom))
-    implementation(Dependence.Compose.composeUi)
-    implementation(Dependence.Compose.androidx_ui_graphics)
-    implementation(Dependence.Compose.composePreview)
-    implementation(Dependence.Compose.material3)
+    implementation(Dependence.AndroidX.Compose.activityCompose)
+    implementation(platform(Dependence.AndroidX.Compose.composeBom))
+    implementation(Dependence.AndroidX.Compose.ui)
+    implementation(Dependence.AndroidX.Compose.uiGraphics)
+    implementation(Dependence.AndroidX.Compose.uiToolingPreview)
+    implementation(Dependence.AndroidX.Compose.material3)
 
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(Dependence.Compose.composeBom))
+    androidTestImplementation(platform(Dependence.AndroidX.Compose.composeBom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
-    debugImplementation(Dependence.Compose.composeUiTooling)
+    debugImplementation(Dependence.AndroidX.Compose.uiTooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

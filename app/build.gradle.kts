@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kotlin)
     alias(libs.plugins.compose.compiler)
+    kotlin("kapt")
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -60,6 +62,10 @@ dependencies {
     implementation(Dependence.AndroidX.Compose.uiGraphics)
     implementation(Dependence.AndroidX.Compose.uiToolingPreview)
     implementation(Dependence.AndroidX.Compose.material3)
+
+    implementation(Dependence.AndroidX.Navigation.navigationCompose)
+    implementation(Dependence.KotlinX.serializationJSON)
+    implementation(project(":onboarding"))
 
     testImplementation(libs.junit)
 

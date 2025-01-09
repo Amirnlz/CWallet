@@ -6,6 +6,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 kspVersion = "2.0.21-1.0.27"
 hilt = "2.51.1"
+kotlinSerialization = "2.0.21"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -16,8 +17,9 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }

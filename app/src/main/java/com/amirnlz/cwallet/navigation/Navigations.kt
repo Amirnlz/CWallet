@@ -1,14 +1,16 @@
 package com.amirnlz.cwallet.navigation
 
+import kotlinx.serialization.Serializable
 
 sealed interface Screen {
 
     @Serializable
-    data object Welcome : Screen
+    data object Onboarding : Screen
 
     @Serializable
-    data object MnemonicGeneration : Screen
+    data object WalletCreation : Screen
 
     @Serializable
-    data object MnemonicPhraseRecovery : Screen
+    data object WalletRecovery : Screen
+
 }

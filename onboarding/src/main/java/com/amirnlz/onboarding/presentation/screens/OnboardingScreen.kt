@@ -1,8 +1,10 @@
 package com.amirnlz.onboarding.presentation.screens
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -25,35 +27,41 @@ fun OnboardingScreen(
     navigateToRecoverScreen: () -> Unit,
     navigateToGenerateScreen: () -> Unit
 ) {
-    Text(
-        text = stringResource(R.string.welcome_to_your_crypto_wallet),
-        fontSize = 24.sp,
-        fontWeight = FontWeight.Bold
-    )
-    Spacer(modifier = Modifier.height(16.dp))
-    Button(
-        onClick = navigateToRecoverScreen,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 8.dp),
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Top
     ) {
-        Icon(
-            imageVector = Icons.Default.Refresh,
-            contentDescription = stringResource(R.string.recover_wallet)
+        Text(
+            text = stringResource(R.string.welcome_to_your_crypto_wallet),
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold
         )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(text = stringResource(id = R.string.recover_wallet))
-    }
-    Button(
-        onClick = navigateToGenerateScreen,
-        modifier = Modifier.fillMaxWidth(),
-
+        Spacer(modifier = Modifier.weight(1f))
+        Button(
+            onClick = navigateToRecoverScreen,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 8.dp),
         ) {
-        Icon(
-            imageVector = Icons.Default.Add,
-            contentDescription = stringResource(R.string.create_new_wallet)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(text = stringResource(id = R.string.create_new_wallet))
+            Icon(
+                imageVector = Icons.Default.Refresh,
+                contentDescription = stringResource(R.string.recover_wallet)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = stringResource(id = R.string.recover_wallet))
+        }
+        Button(
+            onClick = navigateToGenerateScreen,
+            modifier = Modifier.fillMaxWidth(),
+
+            ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = stringResource(R.string.create_new_wallet)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = stringResource(id = R.string.create_new_wallet))
+        }
     }
+
 }

@@ -1,7 +1,9 @@
 package com.amirnlz.cwallet.navigation
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,7 +17,7 @@ fun AppNavigation(modifier: Modifier = Modifier, navHostController: NavHostContr
     NavHost(
         navController = navHostController,
         startDestination = Screen.Onboarding,
-        modifier = modifier
+        modifier = modifier.padding(16.dp)
     ) {
         composable<Screen.Onboarding> {
             OnboardingScreen(

@@ -48,9 +48,15 @@ object Dependence {
                 "androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5"
 
             const val materialIconsCore = "androidx.compose.material:material-icons-core"
+
             const
             val materialIconsExtended =
                 "androidx.compose.material:material-icons-extended"
+        }
+
+        object Navigation {
+            const val navigationCompose = "androidx.navigation:navigation-compose:2.8.5"
+
         }
     }
 

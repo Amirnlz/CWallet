@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "com.amirnlz.onboarding"
-    compileSdk = 34
+    compileSdk = Build.compileSdkVersion
 
     defaultConfig {
-        minSdk = 24
+        minSdk = Build.minSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

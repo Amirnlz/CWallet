@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.amirnlz.onboarding.presentation.screens.OnboardingScreen
+import com.amirnlz.wallet_creation.presentation.screen.WalletCreationScreen
+import com.amirnlz.wallet_recovery.presentation.screen.WalletRecoveryScreen
 
 
 @Composable
@@ -28,8 +30,10 @@ fun AppNavigation(modifier: Modifier = Modifier, navHostController: NavHostContr
             )
         }
         composable<Screen.WalletRecovery> {
+            WalletRecoveryScreen(modifier = Modifier)
         }
         composable<Screen.WalletCreation> {
+            WalletCreationScreen(modifier = Modifier)
         }
 
     }

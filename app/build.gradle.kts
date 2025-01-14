@@ -66,6 +66,8 @@ dependencies {
     implementation(Dependence.AndroidX.Navigation.navigationCompose)
     implementation(Dependence.KotlinX.serializationJSON)
     implementation(project(":onboarding"))
+    implementation(project(":wallet_recovery"))
+    implementation(project(":wallet_creation"))
 
     testImplementation(libs.junit)
 

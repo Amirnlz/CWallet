@@ -2,8 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
     kotlin("kapt")
-    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -33,11 +34,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -50,6 +51,10 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -65,9 +70,17 @@ dependencies {
 
     implementation(Dependence.AndroidX.Navigation.navigationCompose)
     implementation(Dependence.KotlinX.serializationJSON)
-    implementation(project(":onboarding"))
-    implementation(project(":wallet_recovery"))
-    implementation(project(":wallet_creation"))
+
+    implementation(Dependence.Hilt.hiltAndroid)
+    implementation(Dependence.Hilt.hiltLifecycleViewmodel)
+    implementation(Dependence.Hilt.hiltNavigationCompose)
+
+    kapt(Dependence.Hilt.hiltCompiler)
+    kapt(Dependence.Hilt.hiltAndroidCompiler)
+
+    implementation(project(Dependence.Module.onboarding))
+    implementation(project(Dependence.Module.walletRecovery))
+    implementation(project(Dependence.Module.walletCreation))
 
     testImplementation(libs.junit)
 

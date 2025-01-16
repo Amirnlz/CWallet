@@ -2,11 +2,13 @@ package com.amirnlz.cwallet.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.amirnlz.onboarding.presentation.screens.OnboardingScreen
 import com.amirnlz.wallet_creation.presentation.screen.WalletCreationScreen
+import com.amirnlz.wallet_creation.presentation.screen.WalletCreationViewModel
 import com.amirnlz.wallet_recovery.presentation.screen.WalletRecoveryScreen
 
 
@@ -33,9 +35,12 @@ fun AppNavigation(modifier: Modifier = Modifier, navHostController: NavHostContr
             WalletRecoveryScreen(modifier = Modifier)
         }
         composable<Screen.WalletCreation> {
-            WalletCreationScreen(modifier = Modifier)
+            val viewModel = hiltViewModel<WalletCreationViewModel>()
+            WalletCreationScreen(
+                modifier = Modifier,
+                viewModel = viewModel,
+                navigateValidationScreen = {}
+            )
         }
-
     }
-
 }

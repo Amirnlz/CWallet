@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="secret_words">Secret Words</string>
+    <string name="back">Back</string>
+    <string name="write_12_secret_words">Write down the following 12 words in order. Keep them safe and private.</string>
+    <string name="i_ve_written_it_down">I\\\'ve Written It Down</string>
+    <string name="retry">Retry</string>
+</resources>

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hilt)
+    kotlin("kapt")
 
 }
 
@@ -26,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
@@ -53,6 +55,13 @@ dependencies {
     implementation(Dependence.AndroidX.Compose.material3)
     implementation(Dependence.AndroidX.Compose.lifecycleViewmodelCompose)
     implementation(Dependence.AndroidX.Compose.materialIconsCore)
+
+    implementation(project(Dependence.Module.core))
+
+    implementation(Dependence.Hilt.hiltAndroid)
+    implementation(Dependence.Hilt.hiltLifecycleViewmodel)
+    implementation(Dependence.Hilt.hiltNavigationCompose)
+    kapt(Dependence.Hilt.hiltCompiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

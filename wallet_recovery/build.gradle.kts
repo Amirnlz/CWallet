@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "com.amirnlz.wallet_recovery"
-    compileSdk = 34
+    compileSdk = Build.compileSdkVersion
 
     defaultConfig {
-        minSdk = 24
+        minSdk = Build.minSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -26,11 +26,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "18"
     }
     buildFeatures {
         compose = true

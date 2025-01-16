@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.hilt)
-    kotlin("kapt")
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -26,17 +26,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "18"
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
 
 dependencies {
 
@@ -49,8 +46,7 @@ dependencies {
     implementation(Dependence.Web3J.core)
 
     implementation(Dependence.Hilt.hiltAndroid)
-    implementation(Dependence.Hilt.hiltLifecycleViewmodel)
-    kapt(Dependence.Hilt.hiltCompiler)
+    ksp(Dependence.Hilt.hiltAndroidCompiler)
 
 
     testImplementation(libs.junit)

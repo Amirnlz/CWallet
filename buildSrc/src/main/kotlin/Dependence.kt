@@ -21,13 +21,9 @@ object Dependence {
 
     object Hilt {
         const val hiltAndroid = "com.google.dagger:hilt-android:2.51.1"
-        const val hiltCompiler = "com.google.dagger:hilt-compiler:2.51.1" //kapt
-        const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:2.51.1" //kapt
+        const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:2.51.1" //ksp
         const val hiltNavigationCompose =
             "androidx.hilt:hilt-navigation-compose:1.2.0"
-        const val hiltLifecycleViewmodel =
-            "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-        const val hiltAgp = "com.google.dagger:hilt-android-gradle-plugin:2.51.1"
     }
 
 

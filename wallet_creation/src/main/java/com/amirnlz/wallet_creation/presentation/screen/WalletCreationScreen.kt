@@ -40,7 +40,6 @@ fun WalletCreationScreen(
     viewModel: WalletCreationViewModel,
     navigateValidationScreen: () -> Unit
 ) {
-
     val mnemonicPhraseState by remember { viewModel.mnemonicPhraseState }
         .collectAsStateWithLifecycle()
 

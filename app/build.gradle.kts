@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.serialization)
-    kotlin("kapt")
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -34,11 +34,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "18"
     }
     buildFeatures {
         compose = true
@@ -53,9 +53,6 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
 
 dependencies {
 
@@ -72,11 +69,8 @@ dependencies {
     implementation(Dependence.KotlinX.serializationJSON)
 
     implementation(Dependence.Hilt.hiltAndroid)
-    implementation(Dependence.Hilt.hiltLifecycleViewmodel)
     implementation(Dependence.Hilt.hiltNavigationCompose)
-
-    kapt(Dependence.Hilt.hiltCompiler)
-    kapt(Dependence.Hilt.hiltAndroidCompiler)
+    ksp(Dependence.Hilt.hiltAndroidCompiler)
 
     implementation(project(Dependence.Module.onboarding))
     implementation(project(Dependence.Module.walletRecovery))

@@ -1,6 +1,7 @@
 package com.amirnlz.wallet_creation.presentation.screen
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amirnlz.core.common.Resource
@@ -36,17 +37,22 @@ class WalletCreationViewModel @Inject constructor
 
 
     fun generateMnemonicPhrases() {
-
         viewModelScope.launch {
+            _mnemonicPhraseState.value = MnemonicPhraseState.Loading
+
             try {
-                when (val phrases = repository.createWalletMnemonicPhrase()) {
-                    is Resource.Success -> _mnemonicPhraseState.value =
-                        MnemonicPhraseState.Success(phrases.data)
+                val phrases = repository.createWalletMnemonicPhrase()
+                Log.i("PHRASES", phrases.toString())
+
+                when (phrases) {
+                    is Resource.Success -> {
+                        Log.i("SUCCESS", phrases.data.toString())
+                        _mnemonicPhraseState.value =
+                            MnemonicPhraseState.Success(phrases.data)
+                    }
 
                     is Resource.Error -> _mnemonicPhraseState.value =
                         MnemonicPhraseState.Error(phrases.message)
-
-                    else -> _mnemonicPhraseState.value = MnemonicPhraseState.Loading
                 }
             } catch (e: Exception) {
                 _mnemonicPhraseState.value = MnemonicPhraseState.Error(
@@ -55,7 +61,5 @@ class WalletCreationViewModel @Inject constructor
                 )
             }
         }
-
     }
-
 }

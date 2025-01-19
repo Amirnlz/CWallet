@@ -3,6 +3,7 @@ package com.amirnlz.wallet_creation
 
 import android.content.Context
 import com.amirnlz.core.data.encryption.CryptographyManager
+import com.amirnlz.core.data.encryption.MnemonicManager
 import com.amirnlz.wallet_creation.data.datasource.MnemonicEncryptionDataSource
 import com.amirnlz.wallet_creation.data.repository.WalletCreationRepositoryImpl
 import com.amirnlz.wallet_creation.domain.repository.WalletCreationRepository
@@ -32,8 +33,9 @@ object WalletCreationModule {
     @ViewModelScoped
     fun provideMnemonicEncryptionDataSource(
         cryptographyManager: CryptographyManager,
+        mnemonicManager: MnemonicManager,
         @ApplicationContext context: Context
     ): MnemonicEncryptionDataSource {
-        return MnemonicEncryptionDataSource(cryptographyManager, context)
+        return MnemonicEncryptionDataSource(cryptographyManager, mnemonicManager, context)
     }
 }

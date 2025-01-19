@@ -59,7 +59,14 @@ class WalletCreationViewModel @Inject constructor
         }
     }
 
-    fun validateWords() {
+    fun validateWords(userWords: List<String>): Boolean {
+        val currentState = _mnemonicPhraseState.value
+        return if (currentState is MnemonicPhraseState.Success) {
+            currentState.mnemonicPhrase.words == userWords
+
+        } else {
+            false
+        }
 
     }
 }

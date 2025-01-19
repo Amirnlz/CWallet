@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -28,6 +29,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun WalletWordsValidationScreen(
@@ -40,6 +42,7 @@ fun WalletWordsValidationScreen(
     }
     val focusManager = LocalFocusManager.current
     val focusRequester = remember { mutableStateOf(FocusRequester()) }
+    val errorMessage = remember { mutableStateOf<String?>(null) }
 
 
     Column(
@@ -84,7 +87,15 @@ fun WalletWordsValidationScreen(
         }
 
         Button(
-            onClick = { viewModel.validateWords() },
+            onClick = {
+                val isWordsCorrect = viewModel.validateWords(wordsState.map { it.value })
+                if (!isWordsCorrect) {
+                    errorMessage.value = "You've Entered words in correct"
+                } else {
+                    errorMessage.value = null
+                    navigate()
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp)
@@ -92,16 +103,14 @@ fun WalletWordsValidationScreen(
             Text(text = "Validate")
         }
 
-        // Show error message, if any
-//        errorMessage?.let { err ->
-//            Text(
-//                text = err,
-//                color = MaterialTheme.colorScheme.error,
-//                modifier = Modifier.padding(top = 8.dp),
-//                style = MaterialTheme.typography.bodyMedium
-//            )
-//        }
-
+        errorMessage.value?.let { err ->
+            Text(
+                text = err,
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(top = 8.dp),
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
     }
 }
 

@@ -1,7 +1,6 @@
 package com.amirnlz.wallet_creation.presentation.screen
 
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amirnlz.core.common.Resource
@@ -11,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,7 +29,7 @@ class WalletCreationViewModel @Inject constructor
     private var _mnemonicPhraseState =
         MutableStateFlow<MnemonicPhraseState>(MnemonicPhraseState.Loading)
     val mnemonicPhraseState: StateFlow<MnemonicPhraseState> =
-        _mnemonicPhraseState.stateIn(
+        _mnemonicPhraseState.onStart { generateMnemonicPhrases() }.stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(2000L),
             MnemonicPhraseState.Loading,
@@ -41,15 +41,11 @@ class WalletCreationViewModel @Inject constructor
             _mnemonicPhraseState.value = MnemonicPhraseState.Loading
 
             try {
-                val phrases = repository.createWalletMnemonicPhrase()
-                Log.i("PHRASES", phrases.toString())
-
-                when (phrases) {
-                    is Resource.Success -> {
-                        Log.i("SUCCESS", phrases.data.toString())
+                when (val phrases = repository.createWalletMnemonicPhrase()) {
+                    is Resource.Success ->
                         _mnemonicPhraseState.value =
                             MnemonicPhraseState.Success(phrases.data)
-                    }
+
 
                     is Resource.Error -> _mnemonicPhraseState.value =
                         MnemonicPhraseState.Error(phrases.message)

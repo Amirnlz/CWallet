@@ -25,7 +25,6 @@ object MnemonicManager {
         withContext(Dispatchers.Default) {
             try {
                 MnemonicUtils.validateMnemonic(mnemonicPhrase)
-                true
             } catch (e: Exception) {
                 false
             }

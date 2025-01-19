@@ -4,6 +4,8 @@ package com.amirnlz.core.data.encryption
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Base64
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.security.KeyStore
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
@@ -17,14 +19,15 @@ class CryptographyManager {
      * @param plainText The data to encrypt.
      * @return The encrypted data in Base64-encoded format.
      */
-    fun encrypt(plainText: String): String {
+    suspend fun encrypt(plainText: String): String = withContext(Dispatchers.IO) {
         val key = getOrCreateKey()
         val cipher = Cipher.getInstance(CRYPTO_TRANSFORMATION).apply {
             init(Cipher.ENCRYPT_MODE, key)
         }
         val iv = cipher.iv
         val encryptedBytes = cipher.doFinal(plainText.toByteArray())
-        return Base64.encodeToString(iv + encryptedBytes, Base64.DEFAULT)
+
+        Base64.encodeToString(iv + encryptedBytes, Base64.DEFAULT)
     }
 
     /**
@@ -32,7 +35,7 @@ class CryptographyManager {
      * @param cipherText The Base64-encoded encrypted data.
      * @return The original plaintext.
      */
-    fun decrypt(cipherText: String): String {
+    suspend fun decrypt(cipherText: String): String = withContext(Dispatchers.IO) {
         val key = getOrCreateKey()
         val cipherBytes = Base64.decode(cipherText, Base64.DEFAULT)
 
@@ -43,7 +46,7 @@ class CryptographyManager {
         val cipher = Cipher.getInstance(CRYPTO_TRANSFORMATION).apply {
             init(Cipher.DECRYPT_MODE, key, GCMParameterSpec(AUTH_TAG_SIZE, iv))
         }
-        return String(cipher.doFinal(encryptedData))
+        String(cipher.doFinal(encryptedData))
     }
 
     /**
@@ -68,9 +71,13 @@ class CryptographyManager {
         return KeyGenerator.getInstance(CRYPTO_ALGORITHM, KEYSTORE_PROVIDER).apply {
             init(
                 KeyGenParameterSpec.Builder(
-                    KEY_ALIAS, KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
-                ).setBlockModes(CRYPTO_BLOCK_MODE).setEncryptionPaddings(CRYPTO_PADDING)
-                    .setKeySize(KEY_SIZE).build()
+                    KEY_ALIAS,
+                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
+                )
+                    .setBlockModes(CRYPTO_BLOCK_MODE)
+                    .setEncryptionPaddings(CRYPTO_PADDING)
+                    .setKeySize(KEY_SIZE)
+                    .build()
             )
         }.generateKey()
     }

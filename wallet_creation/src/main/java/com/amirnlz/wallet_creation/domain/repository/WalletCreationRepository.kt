@@ -5,5 +5,5 @@ import com.amirnlz.wallet_creation.domain.models.MnemonicPhrase
 
 interface WalletCreationRepository {
 
-    fun createWalletMnemonicPhrase(): Resource<MnemonicPhrase>
+    suspend fun createWalletMnemonicPhrase(): Resource<MnemonicPhrase>
 }

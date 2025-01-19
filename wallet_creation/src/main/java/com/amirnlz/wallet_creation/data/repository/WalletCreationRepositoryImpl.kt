@@ -1,5 +1,6 @@
 package com.amirnlz.wallet_creation.data.repository
 
+import android.util.Log
 import com.amirnlz.core.common.Resource
 import com.amirnlz.wallet_creation.data.datasource.MnemonicEncryptionDataSource
 import com.amirnlz.wallet_creation.domain.models.MnemonicPhrase
@@ -11,14 +12,18 @@ class WalletCreationRepositoryImpl @Inject constructor(
 ) :
     WalletCreationRepository {
 
-    override fun createWalletMnemonicPhrase(): Resource<MnemonicPhrase> {
-        try {
-            val phrases = dataSource.getMnemonic()?.split(" ")
+    override suspend fun createWalletMnemonicPhrase(): Resource<MnemonicPhrase> {
+        return try {
+            val phrases = dataSource.retrieveOrGenerateMnemonic()
+                .split(" ")
+                .let { MnemonicPhrase(it) }
+            Log.v("1# REPO", phrases.words.size.toString())
+            Log.v("2# REPO", phrases.words.toString())
 
-            return Resource.Success(MnemonicPhrase(phrases!!))
+            Resource.Success(phrases)
 
         } catch (e: Exception) {
-            return Resource.Error(e.message.toString(), e)
+            Resource.Error(e.message.orEmpty(), e)
         }
     }
 }

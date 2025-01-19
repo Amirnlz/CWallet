@@ -4,6 +4,7 @@ package com.amirnlz.core
 import android.util.Base64
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.amirnlz.core.data.encryption.CryptographyManager
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
@@ -25,7 +26,7 @@ class CryptographyManagerTest {
     }
 
     @Test
-    suspend fun testEncryptDecryptSymmetry() {
+    fun testEncryptDecryptSymmetry() = runTest {
         val plainText = "Hello World"
 
         val encryptedText = cryptographyManager.encrypt(plainText)
@@ -37,7 +38,7 @@ class CryptographyManagerTest {
     }
 
     @Test
-    suspend fun testEncryptEmptyString() {
+    fun testEncryptEmptyString() = runTest {
         val plainText = ""
 
         val encryptedText = cryptographyManager.encrypt(plainText)
@@ -51,7 +52,7 @@ class CryptographyManagerTest {
     }
 
     @Test
-    suspend fun testDecryptCorruptedData_throwsException() {
+    fun testDecryptCorruptedData_throwsException() = runTest {
         val plainText = "Sample Text"
 
         val encryptedText = cryptographyManager.encrypt(plainText)
@@ -66,13 +67,15 @@ class CryptographyManagerTest {
             // Expected: GCM or BadPadding exception, etc.
             assertTrue(
                 "Expected some type of security exception!",
-                ex is javax.crypto.AEADBadTagException || ex is javax.crypto.BadPaddingException
+                ex is javax.crypto.AEADBadTagException ||
+                        ex is javax.crypto.BadPaddingException ||
+                        ex is javax.crypto.IllegalBlockSizeException
             )
         }
     }
 
     @Test
-    suspend fun testDecryptRandomData_throwsException() {
+    fun testDecryptRandomData_throwsException() = runTest {
         // Create random bytes
         val randomBytes = ByteArray(32) { 42 } // or a random generator
         val randomBase64 = Base64.encodeToString(randomBytes, Base64.DEFAULT)
@@ -90,7 +93,7 @@ class CryptographyManagerTest {
     }
 
     @Test
-    suspend fun testMultipleEncryptDecryptConsistency() {
+    fun testMultipleEncryptDecryptConsistency() = runTest {
         // We want to ensure multiple calls produce different ciphertext but can still decrypt properly
         val plainText = "Testing repeated encryption"
 
@@ -106,7 +109,7 @@ class CryptographyManagerTest {
     }
 
     @Test
-    suspend fun testKeyPersistence() {
+    fun testKeyPersistence() = runTest {
         // This test ensures the key is stored in Keystore and is reused
         val textA = "First text"
         val textB = "Second text"

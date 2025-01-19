@@ -78,6 +78,11 @@ object Dependence {
         const val blur = ":ui:blur"
     }
 
+    object Mockito{
+        const val core = "org.mockito:mockito-core:2.24.5"
+        const val android = "org.mockito:mockito-android:2.24.5"
+    }
+
     object Lib {
         const val extensions = ":lib:extensions"
         const val network = ":lib:network"

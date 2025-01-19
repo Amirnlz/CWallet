@@ -1,5 +1,6 @@
 package com.amirnlz.wallet_creation.presentation.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -19,17 +20,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun WalletWordsValidationScreen(
@@ -42,8 +42,28 @@ fun WalletWordsValidationScreen(
     }
     val focusManager = LocalFocusManager.current
     val focusRequester = remember { mutableStateOf(FocusRequester()) }
-    val errorMessage = remember { mutableStateOf<String?>(null) }
 
+    val (errorMessage, setErrorMessage) = remember { mutableStateOf<String?>(null) }
+
+    val context = LocalContext.current
+
+
+    fun onValidateClicked() {
+        val userWords = wordsState.map { it.value.trim() }
+        val isMnemonicCorrect = viewModel.validateWords(userWords)
+
+        if (isMnemonicCorrect) {
+            setErrorMessage(null)
+            Toast.makeText(
+                context,
+                "Validated Successfully!",
+                Toast.LENGTH_SHORT
+            ).show()
+            navigate()
+        } else {
+            setErrorMessage("One or more words do not match. Please check again.")
+        }
+    }
 
     Column(
         modifier = modifier
@@ -87,15 +107,7 @@ fun WalletWordsValidationScreen(
         }
 
         Button(
-            onClick = {
-                val isWordsCorrect = viewModel.validateWords(wordsState.map { it.value })
-                if (!isWordsCorrect) {
-                    errorMessage.value = "You've Entered words in correct"
-                } else {
-                    errorMessage.value = null
-                    navigate()
-                }
-            },
+            onClick = { onValidateClicked() },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp)
@@ -103,7 +115,7 @@ fun WalletWordsValidationScreen(
             Text(text = "Validate")
         }
 
-        errorMessage.value?.let { err ->
+        errorMessage?.let { err ->
             Text(
                 text = err,
                 color = MaterialTheme.colorScheme.error,

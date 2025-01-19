@@ -58,4 +58,8 @@ class WalletCreationViewModel @Inject constructor
             }
         }
     }
+
+    fun validateWords() {
+
+    }
 }

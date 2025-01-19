@@ -51,6 +51,7 @@ dependencies {
     implementation(Dependence.AndroidX.Compose.ui)
     implementation(Dependence.AndroidX.Compose.uiGraphics)
     implementation(Dependence.AndroidX.Compose.uiToolingPreview)
+    debugImplementation(Dependence.AndroidX.Compose.uiTooling)
     implementation(Dependence.AndroidX.Compose.material3)
     implementation(Dependence.AndroidX.Compose.lifecycleViewmodelCompose)
     implementation(Dependence.AndroidX.Compose.materialIconsCore)

@@ -11,6 +11,9 @@ sealed interface Screen {
     data object WalletCreation : Screen
 
     @Serializable
+    data object WalletWordsValidation : Screen
+
+    @Serializable
     data object WalletRecovery : Screen
 
 }

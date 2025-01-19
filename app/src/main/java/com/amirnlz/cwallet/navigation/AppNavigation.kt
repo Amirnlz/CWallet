@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import com.amirnlz.onboarding.presentation.screens.OnboardingScreen
 import com.amirnlz.wallet_creation.presentation.screen.WalletCreationScreen
 import com.amirnlz.wallet_creation.presentation.screen.WalletCreationViewModel
+import com.amirnlz.wallet_creation.presentation.screen.WalletWordsValidationScreen
 import com.amirnlz.wallet_recovery.presentation.screen.WalletRecoveryScreen
 
 
@@ -39,7 +40,17 @@ fun AppNavigation(modifier: Modifier = Modifier, navHostController: NavHostContr
             WalletCreationScreen(
                 modifier = Modifier,
                 viewModel = viewModel,
-                navigateValidationScreen = {}
+                navigateValidationScreen = {
+                    navHostController.navigate(Screen.WalletWordsValidation)
+                }
+            )
+        }
+        composable<Screen.WalletWordsValidation> {
+            val viewModel = hiltViewModel<WalletCreationViewModel>()
+            WalletWordsValidationScreen(
+                modifier = Modifier,
+                viewModel = viewModel,
+                navigate = {}
             )
         }
     }
